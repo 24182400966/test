@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body
+        
+        *{
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            list-style-type: none;
+        }
+        #menu{
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            background-color: #000;
+        }
+        #menu ul{
+            background-color: #fff;
+            /*display: none;*/
+            /*margin-left: -50px;*/
+            filter: alpha(opacity:0); 
+        }
+        #menu .cursor{
+            /*width: 50px;*/
+            filter: alpha(opacity:0); 
+            opacity:0;
+            height: 18px;
+            background-color: pink;
+            line-height: 16px;
+            /*border-radius:3px 3px 3px 3px;*/
+        }
+        #menu .cursor:hover{
+            background-color: purple;
+        }
+        #menu i{
+            filter: alpha(opacity:0);
+            opacity:0;
+            color:#fff;
+            width: 16px;
+            height: 16px;
+            display: block;
+            margin: 0 auto;
+            text-align: center;
+        }
+        #devil{
+            filter: alpha(opacity:100); 
+            opacity:1;
+            height: 66px;
+            width: 50px;
+            background: rgba(68, 51, 44, 0.3);
+            margin-right: -35px;
+            border-radius: 2px;
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            display: block;
+        }
+        #devil div{
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            margin-bottom: 26px;
+            margin-right: 5px;
+        }
+    </style>
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+    <script src="move.js"></script>
+    
+</head>
+<body>
+    <div id="menu">
+            <ul>
+            <li class="cursor"><i class="fa fa-venus-double"></i></li>
+            <li class="cursor"><i class="fa fa-user"></i></li>
+            <li class="cursor"><i class="fa fa-camera"></i></li>
+            <li class="cursor"><i class="fa fa-comment"></i></li>
+            <li class="cursor"><i class="fa fa-remove"></i></li>
+            </ul>
+            <div id="devil"><div class="fa fa-angle-right fa-rotate-180"></div></div>
+    </div>
+    
+    <script>
+        window.onload= function(){
+            var om=document.getElementById('menu');
+            var od=document.getElementById('devil');
+            var oul=om.getElementsByTagName('ul');
+            var oli=oul[0].getElementsByTagName('li');
+            var oi=oul[0].getElementsByTagName('i');
+            var oddiv=od.getElementsByTagName('div')[0];
+            // od.onmouseover=function(){
+            //     // this.style.height="400"+'px';
+            //     // Move(od,{height:400});
+            //     oul[0].style.display='block';
+            //     this.style.display='none';
+            // }
+            // oul[0].onmouseout=function(){
+            //     // this.style.height="400"+'px';
+            //     // Move(od,{height:400});
+            //     oul[0].style.display='none';
+            //     this.style.display='block';
+            // }
+            od.onclick=function(){
+                Move(oddiv,{opacity:0});
+                Move(this,{width:0},function(){
+                    for(var i=0;i<oli.length;i++)
+                    Move(oli[i],{width:50,opacity:100},function(){
+                        for(var j=0;j<oli.length;j++)
+                        Move(oi[j],{width:50,opacity:100});
+                    });
+                })
+            }
+            oli[4].onclick=function(){
+                for(var j=0;j<oli.length;j++)
+                Move(oi[j],{width:0,opacity:0},function(){
+                    for(var i=0;i<oli.length;i++)
+                    Move(oli[i],{width:0,opacity:0},function(){
+                        Move(od,{width:50},function(){
+                            Move(oddiv,{opacity:100});
+                        });
+                    });
+                });
+             }
+
+            
+        } 
+    </script>
+</body>
+</html>

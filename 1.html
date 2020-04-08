@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    #jb{
+        width: 200px;
+        height: 200px;
+        margin: 200px auto;
+        background-color: pink;
+    }
+</style>
+<script src="move.js"></script>
+<script>
+    window.onload= function(){
+        var oDiv=document.getElementById('jb');
+        oDiv.onmouseover=function(){
+            Move(oDiv,{width:400,height:400});
+        }
+        oDiv.onmouseout=function(){
+            Move(oDiv,{width:200,height:200});
+        }
+    }
+        
+</script>
+<body>
+    <div id="jb"></div>
+</body>
+</html>
